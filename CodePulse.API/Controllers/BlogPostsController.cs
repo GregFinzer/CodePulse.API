@@ -1,6 +1,7 @@
 ﻿using CodePulse.API.Models.Domain;
 using CodePulse.API.Models.DTO;
 using CodePulse.API.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CodePulse.API.Controllers
@@ -17,6 +18,8 @@ namespace CodePulse.API.Controllers
             _blogPostRepository = blogPostRepository;
             _categoryRepository = categoryRepository;
         }
+
+        [Authorize(Roles = "Writer")]
         [HttpPost]
         public async Task<IActionResult> CreateBlogPost([FromBody] AddBlogPostRequestDto request)
         {
@@ -72,6 +75,7 @@ namespace CodePulse.API.Controllers
             return Ok(blogPostDto);
         }
 
+        [Authorize(Roles = "Writer")]
         [HttpPut]
         [Route("{id:Guid}")]
         public async Task<IActionResult> UpdateBlogPost([FromRoute] Guid id, [FromBody] UpdateBlogPostRequestDto request)
@@ -104,6 +108,7 @@ namespace CodePulse.API.Controllers
             return Ok(blogPostDto);
         }
 
+        [Authorize(Roles = "Writer")]
         [HttpDelete]
         [Route("{id:Guid}")]
         public async Task<IActionResult> DeleteBlogPost([FromRoute] Guid id)
@@ -116,6 +121,25 @@ namespace CodePulse.API.Controllers
             }
 
             return Ok();
+        }
+
+        [HttpGet]
+        [Route("{urlHandle}")]
+        public async Task<IActionResult> GetBlogPostByUrlHandle([FromRoute] string urlHandle)
+        {
+            var blogPost = await _blogPostRepository.GetByUrlHandleAsync(urlHandle);
+
+            if (blogPost is null)
+            {
+                return NotFound();
+            }
+
+            BlogPostDto blogPostDto = blogPost.MapPropertiesTo<BlogPost, BlogPostDto>((post, dto) =>
+            {
+                dto.Categories = post.Categories.MapPropertiesTo<Category, CategoryDto>();
+            });
+
+            return Ok(blogPostDto);
         }
 
     }
