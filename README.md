@@ -52,10 +52,10 @@ choco install databasenet
 ```
 
 ## Preparing the database
-1. In SSMS or Database.NET run the script that is in the path: scripts\seeding+blogs.sql
-2. In Visual Studio Open the NuGet Package Manager Console.
-3. Run the command:  `update-database -context "AuthDbContext"`
-4. Run the command:  `update-database -context "ApplicationDbContext"`
+1. In Visual Studio Open the NuGet Package Manager Console.
+2. Run the command:  `update-database -context "AuthDbContext"`
+3. Run the command:  `update-database -context "ApplicationDbContext"`
+4. In SSMS or Database.NET run the script that is in the path: scripts\seeding+blogs.sql
 
 ## Run the application
 Click the play button in Visual Studio to bring up the Swagger for the application.  The Get endpoints do not need authorization but the Post, Put, and Delete operations require an authorization token.  You can use postman to login and get the token and then use the Post, Put and Delete endpoints.  The admin user is:
