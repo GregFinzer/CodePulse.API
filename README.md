@@ -3,6 +3,9 @@ API for learning Angular
 
 From this course:  https://www.udemy.com/course/real-world-app-angular-aspnet-core-web-api-and-sql/
 
+**You must also clone this repository and follow the setup:**
+https://github.com/GregFinzer/CodePulse.UI
+
 ## Development Environment Setup for the API
 ### Install .NET 7 SDK
 https://dotnet.microsoft.com/en-us/download
@@ -58,8 +61,11 @@ choco install databasenet
 4. In SSMS or Database.NET run the script that is in the path: scripts\seeding+blogs.sql
 
 ## Run the application
-Click the play button in Visual Studio to bring up the Swagger for the application.  The Get endpoints do not need authorization but the Post, Put, and Delete operations require an authorization token.  You can use postman to login and get the token and then use the Post, Put and Delete endpoints.  The admin user is:
+Click the play button in Visual Studio to bring up the Swagger for the application.  The Get endpoints do not need authorization but the Post, Put, and Delete operations require an authorization token.  You can use postman to login and get the token and then use the Post, Put and Delete endpoints.  
+
+The admin user is:
 
 User Name:  admin@codepulse.com
+
 Password:  Password1!
 
