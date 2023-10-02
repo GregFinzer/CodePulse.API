@@ -23,7 +23,14 @@ Choose workloads
 * ASP.NET and Web Development
 * Data Storage and Processing
 
-Or Install with Chocolatey
+Or Install one of these with Chocolatey
+```dos
+choco install visualstudio2022community
+choco install visualstudio2022professional
+choco install visualstudio2022enterprise
+```
+
+Then install the workloads with Chocolatey
 ```dos
 choco install visualstudio2022-workload-netweb	
 choco install visualstudio2022-workload-data
